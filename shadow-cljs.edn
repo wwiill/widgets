@@ -4,6 +4,8 @@
  :nrepl 
  {:port 8200}
 
+ ;; app: http://localhost:8280
+ ;; tests: http://localhost:8290
  :dev-http
  {8280 "resources/public"
   8290 "target/browser-test"}
@@ -17,7 +19,7 @@
    :output-dir "resources/public/js/compiled"
    :asset-path "/js/compiled"
    :modules
-   {:app {:init-fn widgets.core/init}}
+   {:app {:init-fn widgets.app/init}}
    :devtools
    {:preloads [day8.re-frame-10x.preload]}
    :dev

@@ -1,6 +1,6 @@
-(ns widgets.core-test
+(ns widgets.app-test
   (:require [cljs.test :refer-macros [deftest testing is]]
-            [widgets.core :as core]))
+            [widgets.app :as app]))
 
 (deftest fake-test
   (testing "fake description"

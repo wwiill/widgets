@@ -19,3 +19,4 @@
 *.iml
 /.lsp/
 /.clj-kondo/
+/.calva/
