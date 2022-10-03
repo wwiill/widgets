@@ -1,0 +1,40 @@
+{:lein true
+
+ ;; start clojure repl then (shadow/repl :app) to get a cljs repl
+ :nrepl 
+ {:port 8200}
+
+ :dev-http
+ {8280 "resources/public"
+  8290 "target/browser-test"}
+
+ :http
+ {:port 8270}
+
+ :builds
+ {:app
+  {:target     :browser
+   :output-dir "resources/public/js/compiled"
+   :asset-path "/js/compiled"
+   :modules
+   {:app {:init-fn widgets.core/init}}
+   :devtools
+   {:preloads [day8.re-frame-10x.preload]}
+   :dev
+   {:compiler-options
+    {:closure-defines
+     { re-frame.trace.trace-enabled? true
+      day8.re-frame.tracing.trace-enabled? true}}}
+   :release
+   {:build-options
+    {:ns-aliases
+     {day8.re-frame.tracing day8.re-frame.tracing-stubs}}}}
+  :browser-test
+  {:target    :browser-test
+   :ns-regexp "-test$"
+   :runner-ns shadow.test.browser
+   :test-dir  "target/browser-test"}
+  :karma-test
+  {:target    :karma
+   :ns-regexp "-test$"
+   :output-to "target/karma-test.js"}}}
