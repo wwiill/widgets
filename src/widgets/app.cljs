@@ -3,6 +3,10 @@
    [kee-frame.core :as k]
    [re-frame.core :as r]
    [widgets.config :as config]
+   [widgets.components.index :as index]
+   [widgets.components.widget :as widget]
+   [widgets.components.widget-form :as widget-form]
+   [widgets.components.widgets :as widgets]
    ))
 
 (enable-console-print!)
@@ -13,22 +17,16 @@
 
 (def routes [["/" :index]
              ["/widgets" :widgets]
-             ["/widgets/:id" :widget]])
+             ["/widgets/:id" :widget]
+             ["/widget/form" :widget-form]])
 
-(defn index-view []
-  [:div "index"])
-
-(defn widgets-view []
-  [:div "widgets-view"])
-
-(defn widget-view [route]
-  [:div (str "widget-view:" (-> route :path-params :id))])
 
 (defn root-view []
   [k/switch-route (fn [route] (-> route :data :name))
-   :index index-view
-   :widgets widgets-view
-   :widget widget-view
+   :index index/view
+   :widget widget/view
+   :widgets widgets/view
+   :widget-form widget-form/view
    nil [:div "Loading..."]])
   
 (defn ^:dev/after-load mount-root []
