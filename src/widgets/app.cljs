@@ -32,7 +32,7 @@
 (defn ^:dev/after-load mount-root []
   (r/clear-subscription-cache!)
   (k/start! {:log {:level :info
-                    :ns-blacklist ["kee-frame.event-logger"]}
+                   :ns-blacklist ["kee-frame.event-logger"]}
               :initial-db {:foo "bar"}
               :routes routes
               :root-component [root-view]}))
